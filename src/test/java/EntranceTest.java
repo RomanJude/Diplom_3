@@ -1,4 +1,4 @@
-import PageObject.PageObjectRegistration;
+import pageobject.PageObjectRegistration;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
@@ -26,23 +26,19 @@ public class EntranceTest {
     @DisplayName("Проверка выхода из аккаунта с применением кнопки «Выйти» в личном кабинете")
     public void checkExitButtonTest() {
         PageObjectRegistration registration = open(BURGERSREGISTRATION_URL, PageObjectRegistration.class);
-        registration.setFieldsForRegistration(name, email, password);
-        registration.registerButtonClick();
-        registration.setFieldsForEntrance(email, password);
-        registration.entranceButtonClick();
+        registration.registerUser(name, email, password);
+        registration.loginUser(email, password);
         registration.cabinetLinkClick();
         registration.exitLinkClick();
-        registration.entranceButtonVisible();
+        registration.checkEntranceButtonVisibility();
     }
 
     @Test
     @DisplayName("Проверка перехода по клику на «Личный кабинет» на главной странице авторизованного пользователя")
     public void checkCabinetTest() {
         PageObjectRegistration registration = open(BURGERSREGISTRATION_URL, PageObjectRegistration.class);
-        registration.setFieldsForRegistration(name, email, password);
-        registration.registerButtonClick();
-        registration.setFieldsForEntrance(email, password);
-        registration.entranceButtonClick();
+        registration.registerUser(name, email, password);
+        registration.loginUser(email, password);
         registration.cabinetLinkClick();
         registration.exitLinkVisible();
     }
@@ -52,7 +48,7 @@ public class EntranceTest {
     public void cabinetLinkEntranceTest() {
         PageObjectRegistration registration = open(BURGER_URL, PageObjectRegistration.class);
         registration.cabinetLinkClick();
-        registration.entranceButtonVisible();
+        registration.checkEntranceButtonVisibility();
     }
 
     @Test
@@ -60,7 +56,7 @@ public class EntranceTest {
     public void entranceToAccountButtonClickTest() {
         PageObjectRegistration registration = open(BURGER_URL, PageObjectRegistration.class);
         registration.entranceToAccountButtonClick();
-        registration.entranceButtonVisible();
+        registration.checkEntranceButtonVisibility();
     }
 
     @Test
@@ -68,7 +64,7 @@ public class EntranceTest {
     public void entranceLinkEcntanceToAccount() {
         PageObjectRegistration registration = open(BURGERSREGISTRATION_URL, PageObjectRegistration.class);
         registration.entranceLinkClick();
-        registration.entranceButtonVisible();
+        registration.checkEntranceButtonVisibility();
     }
 
     @Test

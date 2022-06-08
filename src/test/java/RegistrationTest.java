@@ -1,4 +1,4 @@
-import PageObject.PageObjectRegistration;
+import pageobject.PageObjectRegistration;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
@@ -25,8 +25,7 @@ public class RegistrationTest {
     @DisplayName("Проверка регистрации пользователя с корректными данными")
     public void entranceByEntranceToAccountButtonTest() {
         PageObjectRegistration registration = open(BURGERSREGISTRATION_URL, PageObjectRegistration.class);
-        registration.setFieldsForRegistration(name, email, password);
-        registration.registerButtonClick();
+        registration.registerUser(name, email, password);
         registration.checkEntranceButtonVisibility();
     }
 
@@ -35,8 +34,7 @@ public class RegistrationTest {
     public void incorrectPasswordTest() {
         String incorrectPassword = "avis5";
         PageObjectRegistration registration = open(BURGERSREGISTRATION_URL, PageObjectRegistration.class);
-        registration.setFieldsForRegistration(name, email, incorrectPassword);
-        registration.registerButtonClick();
+        registration.registerUser(name, email, incorrectPassword);
         registration.checkIncorrectPasswordMessage();
     }
 

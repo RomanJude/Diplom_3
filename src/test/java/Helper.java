@@ -1,5 +1,3 @@
-import org.json.JSONObject;
-
 import java.util.Random;
 
 public class Helper {
@@ -16,5 +14,4 @@ public class Helper {
                 .toString();
         return randomString + "@gmail.com";
     }
-
 }

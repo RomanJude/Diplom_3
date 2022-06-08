@@ -1,4 +1,4 @@
-import PageObject.PageObjectRegistration;
+import pageobject.PageObjectRegistration;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
@@ -25,13 +25,11 @@ public class AccountExitTest {
     public void checkExitButtonTest() {
         PageObjectRegistration registration = open(BURGERSREGISTRATION_URL, PageObjectRegistration.class);
         String email = Helper.getRandomEmail();
-        registration.setFieldsForRegistration(name, email, password);
-        registration.registerButtonClick();
-        registration.setFieldsForEntrance(email, password);
-        registration.entranceButtonClick();
+        registration.registerUser(name, email, password);
+        registration.loginUser(email, password);
         registration.cabinetLinkClick();
         registration.exitLinkClick();
-        registration.entranceButtonVisible();
+        registration.checkEntranceButtonVisibility();
     }
 
     @After
